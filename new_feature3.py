@@ -1,1 +1,5 @@
-print("This is new feature 3")
+def print_data(data):
+    print("Data belum dapat dibaca")
+    return "Check Kembali"
+
+print(print_data("Ngakan"))
