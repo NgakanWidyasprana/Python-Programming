@@ -29,3 +29,25 @@ print(search_key_word("minuman",r"^minum")) # Using ^
 print(search_key_word("indonesia",r"d.n.")) # Using .
 print(search_key_word("inggris",r"ras"))    # Not found
 print(search_key_word("raSa",r"ras"))       # addtional IGNORECASE
+
+# Using character class
+def check_punctuation (text):
+   result = re.search(r"[,.:;?']", text)
+   return result != None
+
+print(check_punctuation("This is a sentence that ends with a period.")) # True
+print(check_punctuation("This is a sentence fragment without a period")) # False
+print(check_punctuation("Aren't regular expressions awesome?")) # True
+print(check_punctuation("Wow! We're really picking up some steam now!")) # True
+print(check_punctuation("End of the line")) # False
+
+# Using .groups() and (\w*)
+def group(name):
+    result = re.search(r"^(\w*):(\w*)$",name)                  # ^([\w \.-]*), ([\w \.-]*)$
+    if result is None:                                         # alternatif solution if the name like Ngakan M. or John L.
+       return name,None
+    return "{}:{}".format(result[2],result[1]),result.groups()
+
+name,tuples = group("Ngakan:William")
+print(name)
+print(tuples)
